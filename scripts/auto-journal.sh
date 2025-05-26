@@ -8,7 +8,6 @@ if [ -z "$BOX" ] || [ -z "$TARGET" ]; then
   exit 1
 fi
 
-# === Paths ===
 VAULT="$HOME/Obsidian/HTB"
 BOX_DIR="$VAULT/htb-labs/$BOX"
 SCAN_DIR="$BOX_DIR/scans"
@@ -17,18 +16,48 @@ JOURNAL="$VAULT/daily/$(date +%F).md"
 TIMESTAMP=$(date +"%T")
 SCAN_TIME=$(date +%H%M)
 SCAN_OUTPUT="$SCAN_DIR/${TARGET}-nmap-${SCAN_TIME}.txt"
+FLAG_FILE="$BOX_DIR/flag.txt"
+NOTES_FILE="$BOX_DIR/notes.md"
+FLAGS_MD="$BOX_DIR/flags.md"
 
-# === Create directories ===
 mkdir -p "$SCAN_DIR" "$SCRIPT_DIR"
 mkdir -p "$(dirname "$JOURNAL")"
 
-# === Create notes and flags if missing ===
-touch "$BOX_DIR/notes.md"
-touch "$BOX_DIR/flags.md"
+touch "$NOTES_FILE"
+touch "$FLAGS_MD"
 
-# === Create daily journal if it doesn't exist ===
-if [ ! -f "$JOURNAL" ]; then
-  cat <<EOF > "$JOURNAL"
+nmap -p- -T4 -Pn -oN "$SCAN_OUTPUT" "$TARGET"
+
+NMAP_SERVICES=$(grep -E "^[0-9]+/tcp" "$SCAN_OUTPUT")
+NMAP_SUMMARY=$(echo "$NMAP_SERVICES" | cut -d' ' -f1,2,3 | head -n 10)
+
+TOOLS="- nmap"
+COMMANDS="nmap -p- -T4 -Pn $TARGET"
+LEARNINGS=""
+LESSONS=""
+FOLLOWUPS=""
+RESULTS=""
+FLAG="HTB{REPLACE_WITH_YOUR_FLAG}"
+
+if echo "$NMAP_SERVICES" | grep -q "23/tcp"; then
+  TOOLS="$TOOLS
+- telnet"
+  COMMANDS="$COMMANDS
+telnet $TARGET
+cat /root/flag.txt"
+  LEARNINGS="- Telnet (port 23) was open and allowed unauthenticated access"
+  LESSONS="- Telnet is insecure due to lack of encryption"
+  FOLLOWUPS="- [ ] Create a detection rule for open Telnet ports"
+  RESULTS="- Telnet access confirmed"
+fi
+
+if [ -f "$FLAG_FILE" ]; then
+  FLAG=$(grep -o 'HTB{[^}]*}' "$FLAG_FILE")
+  echo -e "## $(date +%F)
+$FLAG" >> "$FLAGS_MD"
+fi
+
+cat <<EOF > "$JOURNAL"
 ## 🧠 Hacking Log - $(date +%F)
 
 ## 🗓 Date  
@@ -38,60 +67,39 @@ $(date +"%A, %B %d %Y")
 $TIMESTAMP
 
 ## 🛠 Tools Used  
-- 
+$TOOLS
 
 ## 🔍 Target / Lab  
 - $BOX ($TARGET)
 
 ## 📋 Commands Run
 \`\`\`bash
-
+$COMMANDS
 \`\`\`
 
 ## ✅ Learning Detected
+$LEARNINGS
 
 ## ✅ Results
+$RESULTS
+- Retrieved root flag:
+  $FLAG
 
-## 🧠 Lessons Learned
-
-## ❓ Follow-ups
-
-## 🕒 Session Ended
-
-📚 Reference: [[notes/methodology.md]]
-EOF
-fi
-
-# === Run basic nmap scan ===
-echo -e "\n### 🔧 Auto-log @ $TIMESTAMP" >> "$JOURNAL"
-echo "nmap -p- -T4 -Pn $TARGET" >> "$JOURNAL"
-nmap -p- -T4 -Pn -oN "$SCAN_OUTPUT" "$TARGET"
-
-# === Extract top 10 ports from Nmap output ===
-NMAP_SUMMARY=$(grep -E "^[0-9]+/tcp" "$SCAN_OUTPUT" | cut -d' ' -f1,2,3 | head -n 10)
-
-# === Append scan results ===
-cat <<EOF >> "$JOURNAL"
-
-## ✅ Results
-- Nmap scan saved to: $(basename "$SCAN_OUTPUT")
 \`\`\`plaintext
 $NMAP_SUMMARY
 \`\`\`
 
 ## 🧠 Lessons Learned
-- [ ] Understood Nmap output
-- [ ] Identified key services
-- [ ] Practiced full port scanning
+$LESSONS
 
 ## ❓ Follow-ups
-- [ ] Explore services from top ports
-- [ ] Try connecting via browser, curl, or service-specific tool
+$FOLLOWUPS
+
+## 🕒 Session Ended
 
 📚 Reference: [[notes/methodology.md]]
 EOF
 
-# === Git sync ===
-~/Obsidian/HTB/scripts/gitlog.sh
+"$VAULT/scripts/gitlog.sh"
 
-echo "[✓] HTB log, notes, and scan completed for $BOX ($TARGET)"
+echo "[✓] Journal complete for $BOX ($TARGET)"
