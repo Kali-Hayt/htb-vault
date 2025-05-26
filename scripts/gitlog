@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd ~/Obsidian/hacking-journal || { echo "❌ Vault not found"; exit 1; }
+
+TODAY=$(date +%F)
+git add daily/*.md
+git commit -m "🧠 Daily log update: $TODAY" 2>/dev/null || echo "⚠️ Nothing new to commit."
+
+if git remote | grep -q origin; then
+  git push origin main
+else
+  echo "ℹ️ No remote configured. To push: git remote add origin <URL>"
+fi

@@ -1,0 +1,35 @@
+#!/bin/bash
+
+JOURNAL=~/Obsidian/hacking-journal/daily/$(date +%F).md
+
+# Clean duplicate headers — keep last only
+for header in \
+  "## ✅ Results" \
+  "## 🧠 Lessons Learned" \
+  "## ❓ Follow-ups" \
+  "## 🕒 Session Ended" \
+  "## ✅ Learning Detected" \
+  "## 🛠 Tools Used" \
+  "## 🔍 Target / Lab"; do
+
+  awk -v h="$header" '
+  BEGIN { found=0 }
+  $0 ~ h { found=NR }
+  { lines[NR]=$0 }
+  END {
+    for (i=1; i<=NR; i++) {
+      if (lines[i] ~ h) {
+        if (i != found) continue
+      }
+      print lines[i]
+    }
+  }' "$JOURNAL" > "$JOURNAL.tmp" && mv "$JOURNAL.tmp" "$JOURNAL"
+done
+
+# Remove double-dash lines like: "- - echo ..."
+sed -i '/^- - /d' "$JOURNAL"
+
+# Remove standalone "Auto-detected tools and flow" duplicates
+awk '!seen[$0]++' "$JOURNAL" > "$JOURNAL.tmp" && mv "$JOURNAL.tmp" "$JOURNAL"
+
+echo "🧼 Cleaned: $JOURNAL"

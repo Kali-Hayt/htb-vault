@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# === CONFIG ===
+LOGFILE="$HOME/Obsidian/HTB/daily/$(date +%F).md"
+TIMESTAMP=$(date "+%H:%M:%S")
+
+# === WRITE TO LOG ===
+if [ ! -f "$LOGFILE" ]; then
+  echo "# 📅 $(date +%F)" > "$LOGFILE"
+  echo -e "\n## 💻 Terminal Commands\n" >> "$LOGFILE"
+fi
+
+echo "- [$TIMESTAMP] \`$1\`" >> "$LOGFILE"

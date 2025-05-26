@@ -1,0 +1,25 @@
+#!/bin/bash
+
+VAULT="$HOME/Obsidian/hacking-journal"
+JOURNAL="$VAULT/daily/$(date +%F).md"
+ENDTIME=$(date +"%T")
+
+# Check if today's journal exists
+if [ ! -f "$JOURNAL" ]; then
+  echo "[!] No journal found for today."
+  exit 1
+fi
+
+# Append Session Ended time
+echo -e "\n## 🕒 Session Ended: $ENDTIME\n" >> "$JOURNAL"
+
+# Optional: Append a short summary note
+echo -e "### 📌 End-of-Day Summary\n- [ ] Reviewed commands\n- [ ] Reflected on lessons\n- [ ] Planned next steps\n" >> "$JOURNAL"
+
+# 🧠 Final GitHub push of the session
+cd "$VAULT" || exit 1
+git add "daily/$(date +%F).md"
+git commit -m "🛑 Session closed for $(date +%F)"
+git push
+
+echo "[✓] Session ended and pushed to GitHub."

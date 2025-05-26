@@ -1,0 +1,35 @@
+#!/bin/bash
+
+JOURNAL="$HOME/Obsidian/hacking-journal/daily/$(date +%F).md"
+[ ! -f "$JOURNAL" ] && { echo "❌ No journal found: $JOURNAL"; exit 1; }
+
+declare -A sections=(
+  ["🧠 Hacking Log"]="Hacking Log"
+  ["🕒 Time Started"]="Time Started"
+  ["📋 Commands Run"]="Commands Run"
+  ["✅ Learning Detected"]="Learning Detected"
+  ["🕒 Session Ended"]="Session Ended"
+  ["🛠 Tools Used"]="Tools Used"
+  ["🔍 Target / Lab"]="Target / Lab"
+  ["✅ Results"]="Results"
+  ["🧠 Lessons Learned"]="Lessons Learned"
+  ["❓ Follow-ups"]="Follow-ups"
+)
+
+echo "📋 Checking automation in: $JOURNAL"
+echo
+
+for header in "${!sections[@]}"; do
+  label="${sections[$header]}"
+  if grep -q "$header" "$JOURNAL"; then
+
+    content=$(awk -v h="## $header" '$0 ~ h {getline; print}' "$JOURNAL" | sed 's/^[[:space:]]*//')
+    if [[ -n "$content" && "$content" != "-" ]]; then
+      echo "✅ $label → Auto-filled"
+    else
+      echo "⚠️  $label → Exists but empty"
+    fi
+  else
+    echo "❌ $label → Missing!"
+  fi
+done
