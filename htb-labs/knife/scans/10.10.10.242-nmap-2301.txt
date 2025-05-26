@@ -1,0 +1,2 @@
+# Nmap 7.95 scan initiated Sun May 25 23:01:18 2025 as: /usr/lib/nmap/nmap --privileged -p- -T4 --min-rate=1000 -oN /home/kali-hayt/Obsidian/HTB/htb-labs/knife/scans/10.10.10.242-nmap-2301.txt 10.10.10.242
+# Nmap done at Sun May 25 23:01:19 2025 -- 1 IP address (0 hosts up) scanned in 1.12 seconds

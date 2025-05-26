@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "daily/2025-05-25.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "2025-05-25"
             }
           }
         ]
@@ -169,16 +169,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "f4e6c838ccdfdc41",
+  "active": "5ed3dc1a52a158ad",
   "lastOpenFiles": [
+    "index.md",
+    "test-sync.md",
+    "daily/2025-05-25.md",
     "htb-labs/knife/scripts/README.md",
     "htb-labs/knife/scripts",
     "2025-05-25.md",
-    "index.md",
     "htb-labs/meow/flags.md",
     "htb-labs/meow/notes.md",
     "htb-labs/knife/notes.md",
-    "daily/2025-05-25.md",
     "notes/methodology.md",
     "scans/10.10.10.10-nmap-1451.txt",
     "Untitled.md",
@@ -206,7 +207,6 @@
     "Untitled 3.md",
     "Untitled 2.md",
     "Untitled 1.md",
-    "templates/new-writeup.md",
     "Untitled.canvas"
   ]
 }
