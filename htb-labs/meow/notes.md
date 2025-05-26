@@ -1,21 +1,20 @@
-# 📦 HTB Box: meow
-
-- **IP Address**: 10.10.10.8
-- **Date Started**: 2025-05-25
-- **Category**: Starting Point
-- **Difficulty**: 🟢 Easy
+# meow
 
 ---
 
-## 🧪 Enumeration
 
-## 🔍 Exploitation
+### ffuf run (2025-05-26_01-12-49)
+```
+ffuf -u http://10.10.11.242/FUZZ -w /usr/share/wordlists/dirb/common.txt
+```
 
-## 🔧 Privilege Escalation
 
-## 📂 Loot
+**FFUF Results:**
 
-## 🏁 Flags
-- [ ] User: 
-- [ ] Root: 
+### ffuf run (2025-05-26_01-15-01)
+```
+ffuf -u http://10.10.11.242/FUZZ -w /usr/share/wordlists/dirb/big.txt
+```
 
+
+**FFUF Results:**

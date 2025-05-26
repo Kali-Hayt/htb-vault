@@ -1,0 +1,7 @@
+# Nmap 7.95 scan initiated Mon May 26 01:28:19 2025 as: /usr/lib/nmap/nmap --privileged -p- -T4 -Pn -oN /home/kali-hayt/Obsidian/HTB/htb-labs/meow/scans/10.129.107.206-nmap-0128.txt 10.129.107.206
+Nmap scan report for 10.129.107.206
+Host is up (2.2s latency).
+All 65535 scanned ports on 10.129.107.206 are in ignored states.
+Not shown: 65068 filtered tcp ports (no-response), 467 filtered tcp ports (host-unreach)
+
+# Nmap done at Mon May 26 01:44:44 2025 -- 1 IP address (1 host up) scanned in 984.12 seconds
