@@ -26,7 +26,7 @@ mkdir -p "$(dirname "$JOURNAL")"
 touch "$BOX_DIR/notes.md"
 touch "$BOX_DIR/flags.md"
 
-# === Create daily journal ===
+# === Create daily journal if it doesn't exist ===
 if [ ! -f "$JOURNAL" ]; then
   cat <<EOF > "$JOURNAL"
 ## 🧠 Hacking Log - $(date +%F)
@@ -41,7 +41,7 @@ $TIMESTAMP
 - 
 
 ## 🔍 Target / Lab  
-- $BOX - $TARGET
+- $BOX ($TARGET)
 
 ## 📋 Commands Run
 \`\`\`bash
@@ -57,42 +57,20 @@ $TIMESTAMP
 ## ❓ Follow-ups
 
 ## 🕒 Session Ended
+
+📚 Reference: [[notes/methodology.md]]
 EOF
 fi
 
-# === Run Nmap scan ===
+# === Run basic nmap scan ===
 echo -e "\n### 🔧 Auto-log @ $TIMESTAMP" >> "$JOURNAL"
-echo "nmap -p- -T4 --min-rate=1000 $TARGET" >> "$JOURNAL"
+echo "nmap -p- -T4 -Pn $TARGET" >> "$JOURNAL"
+nmap -p- -T4 -Pn -oN "$SCAN_OUTPUT" "$TARGET"
 
-nmap -p- -T4 --min-rate=1000 -oN "$SCAN_OUTPUT" "$TARGET"
-
-# === Parse top ports from scan ===
+# === Extract top 10 ports from Nmap output ===
 NMAP_SUMMARY=$(grep -E "^[0-9]+/tcp" "$SCAN_OUTPUT" | cut -d' ' -f1,2,3 | head -n 10)
 
-# === Parse open ports from scan for -sV ===
-OPEN_PORTS=$(grep -Eo '^[0-9]+/tcp' "$SCAN_OUTPUT" | cut -d'/' -f1 | paste -sd, -)
-
-# === Run -sV scan on open ports ===
-if [ -n "$OPEN_PORTS" ]; then
-  VERSION_SCAN="$BOX_DIR/scans/${TARGET}-nmap-services-${SCAN_TIME}.txt"
-  echo "[+] Detected open ports: $OPEN_PORTS"
-  echo "[+] Running service/version detection..."
-
-  nmap -sV -p"$OPEN_PORTS" -oN "$VERSION_SCAN" "$TARGET"
-
-  # Log into journal
-  echo -e "\n## 🔎 Version Scan Results (Top Ports)" >> "$JOURNAL"
-  echo "- Saved to: $(basename "$VERSION_SCAN")" >> "$JOURNAL"
-  echo "\`\`\`plaintext" >> "$JOURNAL"
-  grep -E "^[0-9]+/tcp" "$VERSION_SCAN" | head -n 10 >> "$JOURNAL"
-  echo "\`\`\`" >> "$JOURNAL"
-else
-  echo "[!] No open ports found — skipping version scan."
-  echo "- No open ports found. Skipped service scan." >> "$JOURNAL"
-fi
-
-
-# === Append results to journal ===
+# === Append scan results ===
 cat <<EOF >> "$JOURNAL"
 
 ## ✅ Results
@@ -102,19 +80,18 @@ $NMAP_SUMMARY
 \`\`\`
 
 ## 🧠 Lessons Learned
-- [ ] Understood tool output
+- [ ] Understood Nmap output
 - [ ] Identified key services
-- [ ] Learned about new port or protocol
+- [ ] Practiced full port scanning
 
 ## ❓ Follow-ups
-- [ ] Investigate open ports found
-- [ ] Try directory fuzzing (gobuster/ffuf)
-- [ ] Check for login portals or web services
+- [ ] Explore services from top ports
+- [ ] Try connecting via browser, curl, or service-specific tool
 
 📚 Reference: [[notes/methodology.md]]
 EOF
 
-# === Auto Git push ===
-"$VAULT/scripts/gitlog.sh"
+# === Git sync ===
+~/Obsidian/HTB/scripts/gitlog.sh
 
 echo "[✓] HTB log, notes, and scan completed for $BOX ($TARGET)"

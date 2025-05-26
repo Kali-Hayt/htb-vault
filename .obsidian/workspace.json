@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "ac702d5f9a0a21eb",
+        "id": "ba1c95540060d2b2",
         "type": "tabs",
         "children": [
           {
-            "id": "5ed3dc1a52a158ad",
+            "id": "3afa0dceaa9c5afb",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "htb-labs/bashed/flags.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "flags"
+              "title": "New tab"
             }
           }
         ]
@@ -169,11 +165,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5ed3dc1a52a158ad",
+  "active": "f4e6c838ccdfdc41",
   "lastOpenFiles": [
-    "htb-labs/bashed/notes.md",
+    "htb-labs/meow/scans/10.129.107.206-nmap-0018.txt",
+    "daily/2025-05-26.md",
     "htb-labs/bashed/flags.md",
     "daily/2025-05-25.md",
+    "htb-labs/bashed/notes.md",
     "index.md",
     "test-sync.md",
     "htb-labs/knife/scripts/README.md",
@@ -205,8 +203,6 @@
     "methodology.md",
     "daily/2025-05-24-2118.md",
     "htb-session-template.md",
-    "templates/methodology.md",
-    "Untitled 3.md",
     "Untitled.canvas"
   ]
 }
