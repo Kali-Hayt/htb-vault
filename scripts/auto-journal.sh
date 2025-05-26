@@ -69,6 +69,29 @@ nmap -p- -T4 --min-rate=1000 -oN "$SCAN_OUTPUT" "$TARGET"
 # === Parse top ports from scan ===
 NMAP_SUMMARY=$(grep -E "^[0-9]+/tcp" "$SCAN_OUTPUT" | cut -d' ' -f1,2,3 | head -n 10)
 
+# === Parse open ports from scan for -sV ===
+OPEN_PORTS=$(grep -Eo '^[0-9]+/tcp' "$SCAN_OUTPUT" | cut -d'/' -f1 | paste -sd, -)
+
+# === Run -sV scan on open ports ===
+if [ -n "$OPEN_PORTS" ]; then
+  VERSION_SCAN="$BOX_DIR/scans/${TARGET}-nmap-services-${SCAN_TIME}.txt"
+  echo "[+] Detected open ports: $OPEN_PORTS"
+  echo "[+] Running service/version detection..."
+
+  nmap -sV -p"$OPEN_PORTS" -oN "$VERSION_SCAN" "$TARGET"
+
+  # Log into journal
+  echo -e "\n## 🔎 Version Scan Results (Top Ports)" >> "$JOURNAL"
+  echo "- Saved to: $(basename "$VERSION_SCAN")" >> "$JOURNAL"
+  echo "\`\`\`plaintext" >> "$JOURNAL"
+  grep -E "^[0-9]+/tcp" "$VERSION_SCAN" | head -n 10 >> "$JOURNAL"
+  echo "\`\`\`" >> "$JOURNAL"
+else
+  echo "[!] No open ports found — skipping version scan."
+  echo "- No open ports found. Skipped service scan." >> "$JOURNAL"
+fi
+
+
 # === Append results to journal ===
 cat <<EOF >> "$JOURNAL"
 
