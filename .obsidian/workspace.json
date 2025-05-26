@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2025-05-25.md",
+                "file": "htb-labs/bashed/flags.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2025-05-25"
+              "title": "flags"
             }
           }
         ]
@@ -171,9 +171,11 @@
   },
   "active": "5ed3dc1a52a158ad",
   "lastOpenFiles": [
+    "htb-labs/bashed/notes.md",
+    "htb-labs/bashed/flags.md",
+    "daily/2025-05-25.md",
     "index.md",
     "test-sync.md",
-    "daily/2025-05-25.md",
     "htb-labs/knife/scripts/README.md",
     "htb-labs/knife/scripts",
     "2025-05-25.md",
@@ -205,8 +207,6 @@
     "htb-session-template.md",
     "templates/methodology.md",
     "Untitled 3.md",
-    "Untitled 2.md",
-    "Untitled 1.md",
     "Untitled.canvas"
   ]
 }
