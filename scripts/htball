@@ -1,0 +1,27 @@
+#!/bin/bash
+
+VAULT="$HOME/Obsidian/HTB"
+BOXLIST="$VAULT/boxlist.txt"
+DATE=$(date +%F)
+DAILY="$VAULT/daily/$DATE.md"
+TEMPLATE="$VAULT/templates/daily-template.md"
+
+# Create journal if missing
+if [ ! -f "$DAILY" ]; then
+  cp "$TEMPLATE" "$DAILY"
+  echo "# 🧠 Hacking Log - $DATE" > "$DAILY"
+  echo -e "\n## 🕒 Time Started" >> "$DAILY"
+  echo "$(date +%T)" >> "$DAILY"
+  echo -e "\n## 🔍 Target / Lab" >> "$DAILY"
+fi
+
+# Loop through each box in list
+while IFS=: read -r BOX IP; do
+  echo "- $BOX ($IP)" >> "$DAILY"
+  "$VAULT/scripts/newbox" "$BOX" "$IP"
+  "$VAULT/scripts/auto-journal.sh" "$BOX" "$IP"
+done < "$BOXLIST"
+
+# Open last box notes
+LAST_BOX=$(tail -n 1 "$BOXLIST" | cut -d: -f1)
+nano "$VAULT/htb-labs/$LAST_BOX/notes.md"

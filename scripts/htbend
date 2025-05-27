@@ -4,21 +4,26 @@ VAULT="$HOME/Obsidian/HTB"
 JOURNAL="$VAULT/daily/$(date +%F).md"
 ENDTIME=$(date +"%T")
 
-# Check if today's journal exists
+# Check for today’s journal
 if [ ! -f "$JOURNAL" ]; then
   echo "[!] No journal found for today."
   exit 1
 fi
 
-# Append Session Ended time
+# Append session end time
 echo -e "\n## 🕒 Session Ended: $ENDTIME\n" >> "$JOURNAL"
 
-# Optional: Append a short summary note
-echo -e "### 📌 End-of-Day Summary\n- [ ] Reviewed commands\n- [ ] Reflected on lessons\n- [ ] Planned next steps\n" >> "$JOURNAL"
+# Add closing summary (optional checklist)
+cat <<EOF >> "$JOURNAL"
+### 📌 End-of-Day Summary
+- [ ] Reviewed commands
+- [ ] Reflected on lessons
+- [ ] Planned next steps
+EOF
 
-# 🧠 Final GitHub push of the session
-cd "$VAULT" || exit 1
-git add "daily/$(date +%F).md"
+# Git commit and push
+cd "$VAULT"
+git add "$JOURNAL"
 git commit -m "🛑 Session closed for $(date +%F)"
 git push
 

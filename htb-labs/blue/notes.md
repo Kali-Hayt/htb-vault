@@ -1,8 +1,8 @@
-# 📦 HTB Box Template - meow
+# 📦 HTB Box Template - blue
 
 ## 🔍 Target Info
-- IP: 10.129.107.206
-- Box Name: meow
+- IP: 10.10.10.40
+- Box Name: blue
 - OS: 
 - Difficulty:
 

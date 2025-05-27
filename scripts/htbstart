@@ -1,0 +1,27 @@
+#!/bin/bash
+
+BOX="$1"
+IP="$2"
+VAULT="$HOME/Obsidian/HTB"
+DATE=$(date +%F)
+DAILY="$VAULT/daily/$DATE.md"
+TEMPLATE="$VAULT/templates/daily-template.md"
+
+# Create daily journal if not present
+if [ ! -f "$DAILY" ]; then
+  cp "$TEMPLATE" "$DAILY"
+  echo "# 🧠 Hacking Log - $DATE" > "$DAILY"
+  echo -e "\n## 🕒 Time Started" >> "$DAILY"
+  echo "$(date +%T)" >> "$DAILY"
+  echo -e "\n## 🔍 Target / Lab\n- $BOX ($IP)\n" >> "$DAILY"
+  echo "📚 Reference: [[notes/methodology.md]]" >> "$DAILY"
+fi
+
+# Set up box structure
+"$VAULT/scripts/newbox" "$BOX" "$IP"
+
+# Auto-log recon
+"$VAULT/scripts/auto-journal.sh" "$BOX" "$IP"
+
+# Launch box notes
+nano "$VAULT/htb-labs/$BOX/notes.md"

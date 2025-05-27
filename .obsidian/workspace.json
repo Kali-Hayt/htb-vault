@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "ba1c95540060d2b2",
+        "id": "abf697a1993ccf6b",
         "type": "tabs",
         "children": [
           {
-            "id": "3afa0dceaa9c5afb",
+            "id": "900c6c8eb9d17eef",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -169,14 +169,22 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "3afa0dceaa9c5afb",
+  "active": "900c6c8eb9d17eef",
   "lastOpenFiles": [
-    "daily/2025-05-25.md",
+    "daily/2025-05-27.md",
     "daily/2025-05-26.md",
+    "daily/2025-05-25.md",
+    "notes/htb-cheatsheet.md",
+    "htb-labs/knife/notes.md",
+    "htb-labs/blue/notes.md",
+    "notes/methodology.md",
     "htb-labs/bashed/notes.md",
+    "htb-labs/blue/post-exploitation.md",
+    "htb-labs/blue/flags.md",
+    "htb-labs/bashed/post-exploitation.md",
+    "htb-labs/bashed/flags.md",
     "meow.md",
     "htb-labs/meow/scans/10.129.107.206-nmap-0018.txt",
-    "htb-labs/bashed/flags.md",
     "index.md",
     "test-sync.md",
     "htb-labs/knife/scripts/README.md",
@@ -184,8 +192,6 @@
     "2025-05-25.md",
     "htb-labs/meow/flags.md",
     "htb-labs/meow/notes.md",
-    "htb-labs/knife/notes.md",
-    "notes/methodology.md",
     "scans/10.10.10.10-nmap-1451.txt",
     "Untitled.md",
     "Untitled",
@@ -201,12 +207,6 @@
     "Templates/DailyTemplate.md",
     "Templates/HTBTemplate.md",
     "templates/htb-session-template.md",
-    "daily/2025-05-24-2137.md",
-    "templates/daily-journal-template.md",
-    "scripts/htb-session-template.md",
-    "methodology.md",
-    "daily/2025-05-24-2118.md",
-    "htb-session-template.md",
     "Untitled.canvas"
   ]
 }

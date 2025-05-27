@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Usage: newbox <box-name> <ip-address>
+BOX_NAME="$1"
+IP="$2"
+
+if [ -z "$BOX_NAME" ] || [ -z "$IP" ]; then
+  echo "Usage: newbox <box-name> <ip-address>"
+  exit 1
+fi
+
+VAULT="$HOME/Obsidian/HTB"
+BOX_DIR="$VAULT/htb-labs/$BOX_NAME"
+TEMPLATES="$VAULT/templates"
+DATE=$(date +%F)
+
+# Create directory structure
+mkdir -p "$BOX_DIR/scans" "$BOX_DIR/scripts"
+
+# Create flags file
+echo -e "- [ ] User Flag:
+- [ ] Root Flag:" > "$BOX_DIR/flags.md"
+touch "$BOX_DIR/flag.txt"
+
+# Create notes.md from box template
+if [ -f "$TEMPLATES/box-template.md" ]; then
+  sed "s/{{BOX_NAME}}/$BOX_NAME/g; s/{{IP_ADDRESS}}/$IP/g" "$TEMPLATES/box-template.md" > "$BOX_DIR/notes.md"
+else
+  touch "$BOX_DIR/notes.md"
+fi
+
+# Create daily log from daily template
+DAILY_LOG="$VAULT/daily/$DATE.md"
+if [ -f "$TEMPLATES/daily-template.md" ]; then
+  sed "s/{{BOX_NAME}}/$BOX_NAME/g; s/{{IP}}/$IP/g; s/{{DATE}}/$DATE/g; s/{{TIME}}/$(date +%T)/g" "$TEMPLATES/daily-template.md" > "$DAILY_LOG"
+else
+  touch "$DAILY_LOG"
+fi
+
+echo "[+] Initialized new HTB box: $BOX_NAME ($IP)"
+echo "[+] Folder: $BOX_DIR"
+echo "[+] Daily log: $DAILY_LOG"
