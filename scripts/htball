@@ -15,12 +15,17 @@ if [ ! -f "$DAILY" ]; then
   echo -e "\n## 🔍 Target / Lab" >> "$DAILY"
 fi
 
-# Loop through each box in list
-while IFS=: read -r BOX IP; do
-  echo "- $BOX ($IP)" >> "$DAILY"
-  "$VAULT/scripts/newbox" "$BOX" "$IP"
-  "$VAULT/scripts/auto-journal.sh" "$BOX" "$IP"
-done < "$BOXLIST"
+# Prompt for box name and IP
+read -p "Box name: " BOX
+read -p "Box IP: " IP
+
+echo "- $BOX ($IP)" >> "$DAILY"
+"$VAULT/scripts/newbox" "$BOX" "$IP"
+"$VAULT/scripts/auto-journal.sh" "$BOX" "$IP"
+
+# Open the box notes
+nano "$VAULT/htb-labs/$BOX/notes.md"
+
 
 # Open last box notes
 LAST_BOX=$(tail -n 1 "$BOXLIST" | cut -d: -f1)
