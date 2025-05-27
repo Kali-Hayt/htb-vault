@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Usage: htb-log <box-name> <ip-address>
+BOX="$1"
+IP="$2"
+
+if [ -z "$BOX" ] || [ -z "$IP" ]; then
+  echo "Usage: htb-log <box-name> <ip-address>"
+  exit 1
+fi
+
+VAULT="$HOME/Obsidian/HTB"
+DATE=$(date +%F)
+TIME=$(date +%T)
+DAILY="$VAULT/daily/$DATE.md"
+TEMPLATE="$VAULT/templates/htb-log-template.md"
+
+# Create daily file if it doesn't already exist
+if [ ! -f "$DAILY" ]; then
+  cp "$TEMPLATE" "$DAILY"
+fi
+
+# Replace placeholders
+sed -i "s/{{BOX_NAME}}/$BOX/g" "$DAILY"
+sed -i "s/{{BOX_IP}}/$IP/g" "$DAILY"
+sed -i "s/{{DATE:YYYY-MM-DD}}/$DATE/g" "$DAILY"
+sed -i "s/{{DATE:dddd, MMMM D, YYYY}}/$(date +"%A, %B %d, %Y")/g" "$DAILY"
+sed -i "s/{{TIME:HH:mm:ss}}/$TIME/g" "$DAILY"
+
+# Open the file for editing
+nano "$DAILY"

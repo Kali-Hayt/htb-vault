@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "abf697a1993ccf6b",
+        "id": "e8be564c0c7d0509",
         "type": "tabs",
         "children": [
           {
-            "id": "900c6c8eb9d17eef",
+            "id": "8329a4a78f6946e7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "htb-labs/bashed/post-exploitation.md",
+                "file": "daily/2025-05-27.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "post-exploitation"
+              "title": "2025-05-27"
             }
           }
         ]
@@ -169,24 +169,26 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "900c6c8eb9d17eef",
+  "active": "8329a4a78f6946e7",
   "lastOpenFiles": [
-    "htb-labs/bashed/notes.md",
+    "daily/2025-05-26.md",
+    "daily/2025-05-27.md",
+    "templates/daily-template.md",
+    "templates/htb-log-template.md",
+    "notes/methodology.md",
     "htb-labs/bashed/flags.md",
+    "htb-labs/fluffy/notes.md",
+    "htb-labs/bashed/post-exploitation.md",
+    "htb-labs/bashed/notes.md",
     "htb-labs/meow/post-exploitation.md",
     "htb-labs/meow/flags.md",
-    "htb-labs/fluffy/notes.md",
     "htb-labs/fluffy/flags.md",
-    "daily/2025-05-27.md",
     "daily/2025-05-25.md",
-    "daily/2025-05-26.md",
     "notes/htb-cheatsheet.md",
     "htb-labs/knife/notes.md",
     "htb-labs/blue/notes.md",
-    "notes/methodology.md",
     "htb-labs/blue/post-exploitation.md",
     "htb-labs/blue/flags.md",
-    "htb-labs/bashed/post-exploitation.md",
     "meow.md",
     "htb-labs/meow/scans/10.129.107.206-nmap-0018.txt",
     "index.md",
@@ -205,8 +207,6 @@
     "scripts/fixlog",
     "scripts/endlog",
     "scripts/checklog",
-    "Templates/DailyTemplate_Auto.md",
-    "Templates/HTBTemplate_Auto.md",
     "Untitled.canvas"
   ]
 }

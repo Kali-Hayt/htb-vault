@@ -1,0 +1,7 @@
+# Nmap 7.95 scan initiated Tue May 27 13:34:29 2025 as: /usr/lib/nmap/nmap --privileged -p- -T4 -Pn -oN /home/kali-hayt/Obsidian/HTB/htb-labs/fluffy/scans/10.10.15.72-nmap-1334.txt 10.10.15.72
+Nmap scan report for 10.10.15.72
+Host is up (0.0000020s latency).
+All 65535 scanned ports on 10.10.15.72 are in ignored states.
+Not shown: 65535 closed tcp ports (reset)
+
+# Nmap done at Tue May 27 13:34:30 2025 -- 1 IP address (1 host up) scanned in 0.66 seconds
