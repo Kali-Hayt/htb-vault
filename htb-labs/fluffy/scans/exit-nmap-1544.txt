@@ -1,0 +1,4 @@
+# Nmap 7.95 scan initiated Wed May 28 15:44:10 2025 as: /usr/lib/nmap/nmap --privileged -p- -T4 -Pn -oN /home/kali-hayt/Obsidian/HTB/htb-labs/fluffy/scans/exit-nmap-1544.txt exit
+Failed to resolve "exit".
+WARNING: No targets were specified, so 0 hosts scanned.
+# Nmap done at Wed May 28 15:44:10 2025 -- 0 IP addresses (0 hosts up) scanned in 0.05 seconds

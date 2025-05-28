@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "htb-labs/fluffy/notes.md",
+                "file": "daily/2025-05-28.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "notes"
+              "title": "2025-05-28"
             }
           }
         ]
@@ -171,9 +171,16 @@
   },
   "active": "8329a4a78f6946e7",
   "lastOpenFiles": [
-    "htb-labs/fluffy/flags.md",
+    "htb-labs/bashed/post-exploitation.md",
+    "daily/2025-05-28.md",
     "daily/2025-05-27.md",
     "htb-labs/fluffy/notes.md",
+    "htb-labs/fluffy/flags.md",
+    "htb-labs/bashed/notes.md",
+    "htb-labs/bashed/flags.md",
+    "htb-labs/knife/post-exploitation.md",
+    "htb-labs/knife/flags.md",
+    "htb-labs/knife/notes.md",
     "daily/2025-05-25.md",
     "daily/2025-05-26.md",
     "notes/htb-cheatsheet.md",
@@ -183,10 +190,6 @@
     "templates/daily-template.md",
     "templates/htb-log-template.md",
     "notes/methodology.md",
-    "htb-labs/bashed/flags.md",
-    "htb-labs/bashed/post-exploitation.md",
-    "htb-labs/bashed/notes.md",
-    "htb-labs/knife/notes.md",
     "htb-labs/blue/notes.md",
     "htb-labs/blue/post-exploitation.md",
     "htb-labs/blue/flags.md",
@@ -196,11 +199,8 @@
     "test-sync.md",
     "htb-labs/knife/scripts/README.md",
     "htb-labs/knife/scripts",
-    "2025-05-25.md",
     "scans/10.10.10.10-nmap-1451.txt",
-    "Untitled.md",
     "Untitled",
-    "scripts/methodology.md",
     "scripts/autolog",
     "scripts/log",
     "scripts/gitlog",
