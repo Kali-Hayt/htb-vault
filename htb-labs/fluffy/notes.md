@@ -1,7 +1,7 @@
 # 📦 HTB Box Template - fluffy
 
 ## 🔍 Target Info
-- IP: 10.10.15.72
+- IP: 10.10.11.69
 - Box Name: fluffy
 - OS: 
 - Difficulty:
