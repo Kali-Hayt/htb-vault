@@ -1,0 +1,17 @@
+# Nmap 7.95 scan initiated Tue May 27 14:23:51 2025 as: /usr/lib/nmap/nmap -Pn -p- --min-rate=1000 -T4 -oN /home/kali-hayt/Obsidian/HTB/htb-labs/fluffy/nmap-full.txt 10.10.11.69
+Nmap scan report for 10.10.11.69
+Host is up (0.088s latency).
+Not shown: 65525 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+53/tcp    open  domain
+139/tcp   open  netbios-ssn
+389/tcp   open  ldap
+445/tcp   open  microsoft-ds
+636/tcp   open  ldapssl
+3268/tcp  open  globalcatLDAP
+3269/tcp  open  globalcatLDAPssl
+9389/tcp  open  adws
+49666/tcp open  unknown
+49684/tcp open  unknown
+
+# Nmap done at Tue May 27 14:25:55 2025 -- 1 IP address (1 host up) scanned in 124.25 seconds

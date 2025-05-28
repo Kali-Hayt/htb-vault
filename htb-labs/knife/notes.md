@@ -1,34 +1,49 @@
-# knife
+## 🧠 Observations
+
+- [ ] Check if PHP shell upload or RCE is possible
+- [ ] Possible PHP vulnerability (Knife often has a Chef or `knife.rb` clue)
+- [ ] Try LFI / Command Injection on exposed endpoints
 
 ---
 
+## 🧪 Exploitation Path (TBD)
 
-### gobuster run (2025-05-25_15-10-28)
-```
-gobuster dir -u http://10.10.11.242 -w /usr/share/wordlists/dirb/common.txt
-```
+- [ ] Use `curl` or browser to interact with discovered endpoints
+- [ ] Try uploading PHP reverse shell if upload functionality found
+- [ ] Use `rlwrap nc -lvnp 4444` to catch shells
 
+---
 
-### ffuf run (2025-05-25_15-15-32)
-```
-ffuf -u http://10.10.11.242/FUZZ -w /usr/share/wordlists/dirb/common.txt
-```
+## 🛠️ Post-Exploitation Checklist
 
+- [ ] `whoami`, `hostname`, `ip a`
+- [ ] Enumerate sudo permissions: `sudo -l`
+- [ ] Look for SUID/cronjobs/misconfigured binaries
+- [ ] Capture `user.txt` and `root.txt`
 
-(jq not installed or JSON missing — skipping summary)
+---
 
-### ffuf run (2025-05-25_15-19-07)
-```
-ffuf -u https://testphp.vulnweb.com/FUZZ -w /usr/share/wordlists/dirb/common.txt
-```
+## 🧼 Cleanup
 
+- [ ] Remove uploaded shells
+- [ ] Clear `.bash_history` if shell was interactive
 
-**FFUF Results:**
+---
 
-### ffuf run (2025-05-25_15-20-20)
-```
-ffuf -u https://testphp.vulnweb.com/FUZZ -w /usr/share/wordlists/dirb/big.txt
-```
+## 🧾 Flags
 
+- [x] `user.txt`: ✅
+- [ ] `root.txt`: ⬜
 
-**FFUF Results:**
+---
+
+## 📌 Notes
+
+- `jq` not installed; use `sudo apt install jq` for JSON FFUF parsing.
+- Use `ffuf-to-md.py` (if built) to convert FFUF results to table automatically.
+
+---
+
+## 🔚 Session End
+
+Use `endlog` to commit notes and push to GitHub.

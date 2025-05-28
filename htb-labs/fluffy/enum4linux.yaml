@@ -1,0 +1,84 @@
+target:
+  host: 10.10.11.69
+credentials:
+  auth_method: 'null'
+  user: ''
+  password: ''
+  domain: ''
+  ticket_file: ''
+  nthash: ''
+  random_user: aoewpsbg
+listeners:
+  LDAP:
+    port: 389
+    accessible: false
+  LDAPS:
+    port: 636
+    accessible: false
+  SMB:
+    port: 445
+    accessible: false
+  SMB over NetBIOS:
+    port: 139
+    accessible: true
+domain: null
+nmblookup: null
+smb_dialects: null
+smb_domain_info: null
+sessions:
+  sessions_possible: true
+  'null': true
+  password: false
+  kerberos: false
+  nthash: false
+  random_user: false
+rpc_domain_info:
+  Domain: FLUFFY
+  Domain SID: S-1-5-21-497550768-2797716248-2627064577
+  Membership: domain member
+os_info: null
+users: null
+groups: null
+shares: {}
+policy: null
+printers: null
+errors:
+  listeners:
+    enum_listeners:
+    - 'Could not connect to LDAP on 389/tcp: timed out'
+    - 'Could not connect to LDAPS on 636/tcp: timed out'
+    - 'Could not connect to SMB on 445/tcp: timed out'
+  nmblookup:
+    enum_netbios:
+    - 'Could not get NetBIOS names information via ''nmblookup'': timed out'
+  domain:
+    enum_netbios:
+    - 'Could not get NetBIOS names information via ''nmblookup'': timed out'
+  smb1_only:
+    enum_smb:
+    - No supported dialects found
+  smb_domain_info:
+    enum_smb_domain_info:
+    - 'SMB connection error on port 139/tcp: session failed'
+  sessions:
+    enum_sessions:
+    - 'Could not establish random user session: STATUS_INVALID_PARAMETER'
+  os_info:
+    enum_os_info:
+    - 'SMB connection error on port 139/tcp: session failed'
+    - 'Could not get OS info via ''srvinfo'': STATUS_ACCESS_DENIED'
+  users:
+    enum_users_rpc:
+    - 'Could not find users via ''querydispinfo'': STATUS_ACCESS_DENIED'
+    - 'Could not find users via ''enumdomusers'': STATUS_ACCESS_DENIED'
+  groups:
+    enum_groups_rpc:
+    - 'Could not get groups via ''enumalsgroups domain'': STATUS_ACCESS_DENIED'
+    - 'Could not get groups via ''enumalsgroups builtin'': STATUS_ACCESS_DENIED'
+    - 'Could not get groups via ''enumdomgroups'': STATUS_ACCESS_DENIED'
+  policy:
+    enum_policy:
+    - 'SMB connection error on port 139/tcp: session failed'
+  printers:
+    enum_printers:
+    - 'Could not get printer info via ''enumprinters'': STATUS_ACCESS_DENIED'
