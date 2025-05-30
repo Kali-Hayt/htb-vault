@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2025-05-28.md",
+                "file": "templates/daily-template.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "2025-05-28"
+              "title": "daily-template"
             }
           }
         ]
@@ -171,10 +171,15 @@
   },
   "active": "8329a4a78f6946e7",
   "lastOpenFiles": [
-    "daily/2025-05-27.md",
-    "daily/2025-05-28.md",
-    "htb-labs/bashed/post-exploitation.md",
     "htb-labs/fluffy/notes.md",
+    "daily/2025-05-28.md",
+    "daily/2025-05-27.md",
+    "templates/htb-log-template.md",
+    "templates/daily-template.md",
+    "templates/box-template.md",
+    "templates/post-exploitation.md",
+    "templates/ffuf-template.md",
+    "htb-labs/bashed/post-exploitation.md",
     "htb-labs/fluffy/flags.md",
     "htb-labs/bashed/notes.md",
     "htb-labs/bashed/flags.md",
@@ -187,17 +192,12 @@
     "htb-labs/meow/flags.md",
     "htb-labs/meow/post-exploitation.md",
     "htb-labs/meow/notes.md",
-    "templates/daily-template.md",
-    "templates/htb-log-template.md",
     "notes/methodology.md",
     "htb-labs/blue/notes.md",
     "htb-labs/blue/post-exploitation.md",
     "htb-labs/blue/flags.md",
     "meow.md",
     "htb-labs/meow/scans/10.129.107.206-nmap-0018.txt",
-    "index.md",
-    "test-sync.md",
-    "htb-labs/knife/scripts/README.md",
     "htb-labs/knife/scripts",
     "scans/10.10.10.10-nmap-1451.txt",
     "Untitled",
